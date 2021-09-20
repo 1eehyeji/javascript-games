@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>끝말잇기</title>
+</head>
+
+<body>
+    <div><span id="order">1</span>번째 참가자</div>
+    <div>제시어: <span id="word"></span></div>
+    <input type="text">
+    <button>입력</button>
+    <!-- <button class="btn">버튼2</button> -->
+    <!-- <button class="btn">버튼3</button> -->
+    <script>
+        const number = parseInt(prompt("몇 명이 참가하나요?"), 10);
+        // console.log(number);
+        alert(number);
+        const yesOrNo = confirm(number + "명이 맞나요?");
+        // console.log(yesOrNo); // true or false
+
+        // document.querySelector('span'); // 첫 번째 span태그가 선택됨
+        // document.querySelector('#order'); // 해당 아이디를 가진 태그가 선택됨
+        // document.querySelectorAll('button.btn'); // class 값이 btn인 모든 버튼 태그가 선택됨
+        
+        document.querySelector('input').addEventListener('input', function () {
+            console.log('input!');  // 값을 입력할때마다 실행
+        });
+
+        document.querySelector('button').addEventListener('click', function () {    // 리스너 함수, 콜백함수, 무명함수 여러 이름으로 불릴 수 있음
+            console.log('click!');  // 버튼을 클릭할때마다 실행
+        });
+
+        
+    </script>
+</body>
+
+</html>
