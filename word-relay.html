@@ -17,22 +17,39 @@
     <script>
         const number = parseInt(prompt("몇 명이 참가하나요?"), 10);
         // console.log(number);
-        alert(number);
+        // alert(number);
         const yesOrNo = confirm(number + "명이 맞나요?");
         // console.log(yesOrNo); // true or false
-
+        
         // document.querySelector('span'); // 첫 번째 span태그가 선택됨
         // document.querySelector('#order'); // 해당 아이디를 가진 태그가 선택됨
         // document.querySelectorAll('button.btn'); // class 값이 btn인 모든 버튼 태그가 선택됨
-        
-        document.querySelector('input').addEventListener('input', function () {
-            console.log('input!');  // 값을 입력할때마다 실행
-        });
 
-        document.querySelector('button').addEventListener('click', function () {    // 리스너 함수, 콜백함수, 무명함수 여러 이름으로 불릴 수 있음
-            console.log('click!');  // 버튼을 클릭할때마다 실행
-        });
+        const $input = document.querySelector('input');
+        const $button = document.querySelector('button');
+        const $word = document.querySelector('#word');
+        let word;       // 제시어
+        let newWord;    // 새로 입력한 단어
 
+        const onInput = (event) => {
+            newWord = event.target.value;
+        }
+
+        $input.addEventListener('input', onInput);
+
+        const onClick = () => {
+            // 제시어가 비어 있는가?
+            if (!word) {
+                // 비어 있음
+                word = newWord;
+                $word.textContent = word;
+                $input.value = '';
+            } else {
+                // 비어 있지 않음
+            }
+        }
+
+        $button.addEventListener('click', onClick);
         
     </script>
 </body>
