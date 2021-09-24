@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +21,7 @@
         // alert(number);
         const yesOrNo = confirm(number + "명이 맞나요?");
         // console.log(yesOrNo); // true or false
-        
+
         // document.querySelector('span'); // 첫 번째 span태그가 선택됨
         // document.querySelector('#order'); // 해당 아이디를 가진 태그가 선택됨
         // document.querySelectorAll('button.btn'); // class 값이 btn인 모든 버튼 태그가 선택됨
@@ -28,6 +29,7 @@
         const $input = document.querySelector('input');
         const $button = document.querySelector('button');
         const $word = document.querySelector('#word');
+        const $order = document.querySelector('#order');
         let word;       // 제시어
         let newWord;    // 새로 입력한 단어
 
@@ -37,20 +39,47 @@
 
         $input.addEventListener('input', onInput);
 
-        const onClick = () => {
+        const onClickButton = () => {
             // 제시어가 비어 있는가?
             if (!word) {
                 // 비어 있음
                 word = newWord;
                 $word.textContent = word;
+                
+                const order = Number($order.textContent);
+                if (order + 1 > number) {
+                    $order.textContent = 1;
+                } else {
+                    $order.textContent = (order + 1);
+                }
+
                 $input.value = '';
+                $input.focus();
             } else {
                 // 비어 있지 않음
+                if (word[word.length - 1] === newWord[0]) {     // 입력 값이 올바른가
+                    word = newWord;
+                    $word.textContent = word;
+                    
+                    const order = Number($order.textContent);
+                    if (order + 1 > number) {
+                        $order.textContent = 1;
+                    } else {
+                        $order.textContent = order + 1;
+                    }
+                    
+                    $input.value = '';
+                    $input.focus();
+                } else {    // 올바르지 않음
+                    alert('올바르지 않은 단어입니다.');
+                    $input.value = '';
+                    $input.focus();
+                }
             }
         }
 
-        $button.addEventListener('click', onClick);
-        
+        $button.addEventListener('click', onClickButton);
+
     </script>
 </body>
 
