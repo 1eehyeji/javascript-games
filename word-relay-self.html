@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>쿵쿵따</title>
+</head>
+
+<body>
+    <div><span id="order">1</span>번째 참가자</div>
+    <div>제시어: <span id="word"></span></div>
+    <input type="text">
+    <button>입력</button>
+
+    <script>
+        const number = parseInt(prompt("몇 명이 참가하나요?"), 10);
+
+        // 몇명이 참가하는지 입력했는가?
+        if (number) {
+            const yesOrNo = confirm(number + "명이 맞나요?");
+
+            const $input = document.querySelector('input');
+            const $button = document.querySelector('button');
+            const $word = document.querySelector('#word');
+            const $order = document.querySelector('#order');
+            let word;       // 제시어
+            let newWord;    // 새로 입력한 단어
+
+            $input.addEventListener('input', () => {
+                newWord = event.target.value;
+            });
+
+            const onClickButton = () => {
+                if ((!word|| word[word.length - 1] === newWord[0]) && newWord.length === 3) {
+                    word = newWord;
+                    $word.textContent = word;
+
+                    const order = Number($order.textContent);
+                    $order.textContent = (order + 1) > number ? 1 : (order + 1);
+                } else {
+                    alert('올바르지 않은 단어입니다.');
+                }
+
+                $input.value = '';
+                $input.focus();
+            }
+
+            $button.addEventListener('click', onClickButton);
+        }
+    </script>
+</body>
+
+</html>
